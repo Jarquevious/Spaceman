@@ -1,5 +1,5 @@
 
-import random
+import random 
 
 def load_word():
     '''
@@ -8,11 +8,11 @@ def load_word():
     Returns: 
            string: The secret word to be used in the spaceman guessing game
     '''
-    f = open('words.txt', 'r')
-    words_list = f.readlines()
-    f.close()
+    f = open('words.txt', 'r') #open the file and 'r' keeps it open
+    words_list = f.readlines() #read line means everything is in the open file, all words are being added to the word list
+    f.close() #means it closed
 
-    words_list = words_list[0].split(' ')
+    words_list = words_list[0].split('')
     secret_word = random.choice(words_list)
     return secret_word
 
@@ -26,7 +26,12 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-    pass
+    for letter in secret_word:
+        if letter in letters_guessed:
+            print('Your Guess appears in the in word!')
+        else:
+            print('Sorry your guess was not in the word, try again')
+
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
