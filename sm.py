@@ -79,11 +79,14 @@ def spaceman(secret_word):
     print(f"Welcome to Spaceman\nThe Secret word contains: {len(secret_word)} letters")
     print(secret_word)
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
+    guess = input("Guess a letter: ")
+
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
+    is_guess_in_word(guess, secret_word)
 
     #TODO: show the guessed word so far
-
+    print(get_guessed_word(secret_word, letters_guessed))
     #TODO: check if the game has been won or lost
 
 
