@@ -1,6 +1,6 @@
 
 import random 
-
+letters_guessed = list()
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -25,13 +25,13 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns: 
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-    # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     for letter in secret_word:
-        if letter in letters_guessed:
-            print('Your Guess appears in the in word!')
-        else:
-            print('Sorry your guess was not in the word, try again')
-
+        if letter not in letters_guessed:
+            return True
+    return False
+    
+    # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
+    
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -59,11 +59,12 @@ def is_guess_in_word(guess, secret_word):
     Returns:
         bool: True if the guess is in the secret_word, False otherwise
     '''
+    if guess in secret_word:
+        print('Your Guess appears in the in word!')
+    else:
+        print('Sorry your guess was not in the word, try again')
+
     #TODO: check if the letter guess is in the secret word
-
-    pass
-
-
 
 
 def spaceman(secret_word):
@@ -72,10 +73,11 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
-
-
+    #while is_word_guessed(secret_word, letters_guessed):
+    
     #TODO: show the player information about the game according to the project spec
-
+    print(f"Welcome to Spaceman\nThe Secret word contains: {len(secret_word)} letters")
+    print(secret_word)
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
@@ -91,6 +93,4 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-a = get_guessed_word('apple', ["a", "l"])
-print(a)
 spaceman(secret_word)
