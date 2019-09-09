@@ -42,14 +42,14 @@ def get_guessed_word(secret_word, letters_guessed):
     Returns: 
         string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
-   
-     space_fillers = list()
+    string1 = ""
     for letter in secret_word:
         if letter in letters_guessed:
-            space_fillers.append(letter)
+            string1 += letter
         else:
-            
-    return space_fillers 
+            string1 += "_"
+    return string1 
+
   
 def is_guess_in_word(guess, secret_word):
     '''
@@ -78,9 +78,14 @@ def spaceman(secret_word):
     print(f"Welcome to Spaceman\nThe Secret word contains: {len(secret_word)} letters")
     print(secret_word)
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
-    while is_word_guessed(secret_word, letters_guessed):
+    Counter = 6
+    while is_word_guessed(secret_word, letters_guessed) and Counter >= 0:
          guess = input("Guess a letter: ")
+         letters_guessed.append(guess)
          print(get_guessed_word(secret_word, letters_guessed))
+         print(f"You have {Counter} guesses left")
+         Counter -= 1
+
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
          is_guess_in_word(guess, secret_word)
