@@ -12,7 +12,7 @@ def load_word():
     words_list = f.readlines() #read line means everything is in the open file, all words are being added to the word list
     f.close() #means it closed
 
-    words_list = words_list[0].split('')
+    words_list = words_list[0].split(' ')
     secret_word = random.choice(words_list)
     return secret_word
 
@@ -42,12 +42,14 @@ def get_guessed_word(secret_word, letters_guessed):
     Returns: 
         string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
-
-    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
-
-    pass
-
-
+    string1 = ""
+    for letter in secret_word:
+        if letter in letters_guessed:
+            string1 += letter
+        else:
+            string1 += "_"
+    return string1 
+  
 def is_guess_in_word(guess, secret_word):
     '''
     A function to check if the guessed letter is in the secret word
@@ -89,4 +91,6 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(load_word())
+a = get_guessed_word('apple', ["a", "l"])
+print(a)
+spaceman(secret_word)
