@@ -1,4 +1,5 @@
 import random 
+import string
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -26,6 +27,9 @@ def is_word_guessed(secret_word, letters_guessed):
     for letter in secret_word:
         if letter in letters_guessed:
             continue
+        else:
+            return False
+    
     return True
     
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
@@ -77,15 +81,24 @@ def spaceman(secret_word):
     print(secret_word)
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
     
+    alpha = list('abcdefghijklmnopqrstuvwxyz')
     letters_guessed = list()
     
     Counter = 7
     while Counter > 0:
-        guess = input("Guess a letter: ")
+        print("---------------------------------------------------")
+        guess = str(input("Guess a letter: "))
         
-        #print(get_guessed_word(secret_word, letters_guessed))
+        #A while loop to check length of user input. similiar to guess in letters_guessed
+        while len(guess) != 1:
+            guess = str(input("Sorry, you can only use one letter at a time, please try again!: "))
+
+        #Another while loop to check if it is a letter
+        while str.isalpha(guess) == False:
+            guess = str(input("Sorry, you can only use a letter, please try again!: "))
+
         while guess in letters_guessed:
-            guess = input("You entered that letter already, try again: ")
+            guess = str(input("You entered that letter already, try again: "))
         
         letters_guessed.append(guess)
         
@@ -96,13 +109,15 @@ def spaceman(secret_word):
         else:
             print("Incorrect!")
             Counter -= 1
-        
-        
-        print(f"You have {Counter} guesses left")
-        print("---------------------------------------------------")
         print(f"Letters guessed {letters_guessed}")
         
-        if is_word_guessed == True:
+        alpha.remove(guess)
+        
+        print(f"You have {Counter} guesses left")
+        print("Letters you have left: ", " ".join(alpha))
+        
+        
+        if is_word_guessed(secret_word, letters_guessed) == True:
             return print("Congrats!  You have won the game!")
 
         if Counter < 1: 
