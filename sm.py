@@ -25,12 +25,14 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     for letter in secret_word:
+        
         if letter in letters_guessed:
-            continue
+            return True
         else:
             return False
+
     
-    return True
+    
     
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     
@@ -150,7 +152,7 @@ secret_word = load_word()
 
 def test_function():
     print(load_word())
-    print(is_word_guessed(secret_word, "a"))
+    print(is_word_guessed("a", ["a"]))
     print(is_guess_in_word("a", secret_word))
 
 test_function()
