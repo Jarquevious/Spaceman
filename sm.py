@@ -64,9 +64,10 @@ def is_guess_in_word(guess, secret_word):
     '''
     if guess in secret_word:
         return True
-    else:
+    elif guess in secret_word:
         return False 
-
+    else:
+        print("something is")
     #TODO: check if the letter guess is in the secret word
 
 
@@ -145,4 +146,11 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(secret_word)
+#spaceman(secret_word)
+
+def test_function():
+    print(load_word())
+    print(is_word_guessed(secret_word, "a"))
+    print(is_guess_in_word("a", secret_word))
+
+test_function()
